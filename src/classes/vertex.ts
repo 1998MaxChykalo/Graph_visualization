@@ -1,6 +1,7 @@
 import { Vector3, Mesh, MeshBasicMaterial } from "three";
 import { geometry, scene } from "../constants/index";
 
+
 export default class Vertex<T=any> {
   data?: T;
   forces: Vector3 = new Vector3();
@@ -28,7 +29,7 @@ export default class Vertex<T=any> {
     this.drawObject.position.set(val.x || 0, val.y || 0, val.z || 0);
   }
 
-  public isConnected(v: Vertex): boolean {
+  public isConnectedTo(v: Vertex): boolean {
     for (let i = 0, j = this.connectedTo.length; i < j; i++) {
       if (this.connectedTo[i] === v)
         return true;

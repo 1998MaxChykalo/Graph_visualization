@@ -1,6 +1,7 @@
 
 import Graph from "../classes/graph";
-import IOptions from "../classes/force-options";
+import IOptions from "../interfaces/options.interface";
+
 export default interface IIntegrator {
   graph: Graph;
   options: IOptions;

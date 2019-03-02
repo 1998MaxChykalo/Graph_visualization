@@ -7,9 +7,11 @@ import Edge from "../classes/edge";
  * @param vertices array of vertices
  * @param quantity number of edges to create
  */
-export default function generateEdges(vertices: Vertex[], quantity: number) {
-  // debugger;
+export default function generateEdges(vertices: Vertex[], quantity?: number) {
+  
   const vlength = vertices.length;
+  quantity = quantity || vlength;
+  
   if (vlength * (vlength - 1) < quantity) {
     console.error('You exceeded maximum number of edges in graph');
     quantity = vlength;
@@ -26,8 +28,8 @@ export default function generateEdges(vertices: Vertex[], quantity: number) {
     sIndex = randomIntFromRange(0, vlength - 1);
 
     // create edge if vertices isn't already connected
-    // and we don't try to connect vertex to itself
-    if (!vertices[fIndex].isConnected(vertices[sIndex]) && fIndex !== sIndex) {
+    // and if we don't try to connect vertex to itself
+    if (!vertices[fIndex].isConnectedTo(vertices[sIndex]) && fIndex !== sIndex) {
       const edge = new Edge(vertices[fIndex], vertices[sIndex]);
       createdCount++;
       edges.push(edge);

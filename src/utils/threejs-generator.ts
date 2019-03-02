@@ -3,9 +3,11 @@ import * as THREE from 'three';
 import * as TrackballControlsLibrary from 'three-trackballcontrols';
 
 export default class ThreeJSGenerator {
+
   static generateGeometry(): SphereGeometry {
     return new SphereGeometry(30)
   }
+  
   public static generateRenderer(): WebGLRenderer {
     const renderer = new WebGLRenderer({ alpha: true, antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);

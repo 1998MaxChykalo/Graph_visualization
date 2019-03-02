@@ -7,13 +7,12 @@ import generateVertices from "./utils/generate-vertices";
 import generateEdges from "./utils/generate-edges";
 
 function main() {
-  const vertices: Vertex[] = generateVertices(5);
-  const edges: Edge[] = generateEdges(vertices, 50);
+  const vertices: Vertex[] = generateVertices(55);
+  const edges: Edge[] = generateEdges(vertices, 100);
   const graph = new Graph(vertices, edges);
   const integrator = new FruchtermannReingoldIntegrator(graph);
   const wolrd = new World(integrator);
 }
-
 
 // need this stuff to use HMR from webpack-dev-server
 if (module.hot) {

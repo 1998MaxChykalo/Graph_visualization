@@ -1,9 +1,12 @@
 import Vertex from "../classes/vertex";
 import { Vector3 } from "three";
 
+/**
+ * @param count number of vertices to generate
+ */
 export default function generateVertices(count: number): Vertex[] {
-  const area = 1000;
   const res = [];
+  const area = 100;
   for (let i = 0; i < count; i++) {
     const vertex = new Vertex();
     const x = Math.floor(Math.random() * (area + area + 1) - area),

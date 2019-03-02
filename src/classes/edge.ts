@@ -1,27 +1,30 @@
 import Vertex from "./vertex";
 import * as THREE from "three";
-import { Scene, LineSegments, Vector3 } from "three";
-import { scene, geometry } from "./../constants/index";
+import { Scene, Line, Geometry } from "three";
+import { scene } from "./../constants/index";
 
 export default class Edge {
-  public line: LineSegments;
-  private prevPosition: Vector3;
+  public line: Line;
+  
   constructor(public source: Vertex, public target: Vertex) {
     source.connectedTo.push(target);
     target.connectedTo.push(source);
     this.draw(scene);
   }
   draw(scene: Scene) {
-    if (this.line) scene.remove(this.line);
+    if (this.line) {
+      return (this.line.geometry as Geometry).verticesNeedUpdate = true;
+    };
     const material = new THREE.LineBasicMaterial({ color: 0x606060 });
 
     const tempGeometry = new THREE.Geometry();
     tempGeometry.vertices.push(this.source.position);
     tempGeometry.vertices.push(this.target.position);
     
-    tempGeometry.normalsNeedUpdate.valueOf()
+    // tempGeometry.normalsNeedUpdate.valueOf()
+    tempGeometry.verticesNeedUpdate
     tempGeometry.verticesNeedUpdate = true;
-    this.line = new THREE.LineSegments(tempGeometry, material);
+    this.line = new THREE.Line(tempGeometry, material);
     this.line.matrixAutoUpdate = true;
     this.line.scale.x = this.line.scale.y = this.line.scale.z = 1;
     // NOTE: Deactivated frustumCulled, otherwise it will not draw all lines (even though
